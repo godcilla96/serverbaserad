@@ -4,7 +4,7 @@
 // express
 // body-parser (möjlighet att läsa in form-data)
 
-const port = 3001;
+const port = 3330;
 const express = require("express");
 const app = express();
 
@@ -15,8 +15,16 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 // routing
-app.get("/", (req, resp) => {
-    resp.render("index");
+app.get("/", (req, res) => {
+    res.render("index");
+});
+
+app.get("/about", (req, res) => {
+    res.render("about");
+});
+
+app.get("/addcourse", (req, res) => {
+    res.render("addcourse");
 });
 
 // starta applikation
