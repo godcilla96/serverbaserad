@@ -81,3 +81,22 @@ nav a {
         margin: 0 auto;
     }
 }
+
+form, input {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    height: 25px;
+}
+
+
+.submit {
+    width: 50%;
+    height: 35px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 1.2em;
+}
