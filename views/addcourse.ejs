@@ -17,19 +17,19 @@
     <main>
     <h1>Lägg till kurs</h1>
     <p>Här kan du lägga till nya kurser</p>
-    <form method = "post">
-        <label for = "name">Kursnamn:</label>
-        <input type = "text" id = "name" name = "name">
-        <br>
-        <label for = "code">Kurskod:</label>
-        <input type ="text" id ="code" name = "code">
-        <br>
-        <label for = "syllabus">Kursplan:</label>
-        <input type ="text" id ="syllabus" name = "syllabus">
-        <br>
-        <label for = "progression">Kursprogression:</label>
-        <input type ="text" id ="progression" name = "progression">
-        <br>
+        <form action="/add-course" method="POST">
+            <label for="coursename">Kursnamn:</label>
+            <input type="text" id="coursename" name="coursename" required><br>
+            
+            <label for="coursecode">Kurskod:</label>
+            <input type="text" id="coursecode" name="coursecode" required><br>
+            
+            <label for="progression">Progression:</label>
+            <input type="text" id="progression" name="progression" required><br>
+            
+            <label for="syllabus">Kursplan:</label>
+            <input type="text" id="syllabus" name="syllabus" required><br>
+            
         <input type = "submit" value = "Lägg till kurs" class = "submit">
     </form>
     </main>
