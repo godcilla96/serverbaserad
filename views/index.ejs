@@ -17,6 +17,31 @@
     <main>
     <h1>Visa kurser</h1>
     <p>En text som visar hur brödtexten ser ut...</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Kursnamn</th>
+                <th>Kurskod</th>
+                <th>Progression</th>
+                <th>Kursplan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% courses.forEach(function(course) { %>
+                <tr>
+                    <td><%= course.coursename %></td>
+                    <td><%= course.coursecode %></td>
+                    <td><%= course.progression %></td>
+                    <td><%= course.syllabus %></td>
+                    <td>
+                        <form method="post" action="/delete-course">
+                            <input type="hidden" name="courseId" value="<%= course.id %>">
+                            <button type="submit" class="delete-button">Ta bort</button>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
     </main>
 
         <footer>
