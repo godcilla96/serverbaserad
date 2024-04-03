@@ -7,6 +7,14 @@
 const port = 3010;
 const express = require("express");
 const app = express();
+// kurser
+const courses = [
+    { KURSNAMN: "Webbutveckling I", KURSKOD: "DT057G", PROGRESSION: "A", KURSPLAN: "https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT057G/" },
+    { KURSNAMN: "Introduktion till programmering i JavaScript", KURSKOD: "DT084G", PROGRESSION: "A", KURSPLAN: "https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT084G/" },
+    { KURSNAMN: "Grafisk teknik för webb", KURSKOD: "DT200G", PROGRESSION: "A", KURSPLAN: "https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT200G/" },
+    { KURSNAMN: "Webbanvändbarhet", KURSKOD: "DT068G", PROGRESSION: "B", KURSPLAN: "https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT068G/" },
+];
+
 
 // view engine
 app.set("view engine", "ejs");
@@ -30,7 +38,7 @@ app.get("/about", (req, res) => {
 });
 
 app.get("/addcourse", (req, res) => {
-    res.render("addcourse");
+    res.render("addcourse", { courses: courses });
 });
 
 // starta applikation
@@ -47,7 +55,7 @@ const sqlite3 = require("sqlite3").verbose();
 
 app.use(express.urlencoded({ extended: true }));
 
-const db = new sqlite3.Database("./db/courses.db");
+const db = new sqlite3.Database("./db/cv.db");
 
 app.post("/add-course", (req, res) => {
   const { coursename, coursecode, progression, syllabus } = req.body;
@@ -87,4 +95,12 @@ app.post("/delete-course", (req, res) => {
             res.redirect("/");
         }
     });
+});
+//börjar om index på 1 vid raderande/tillägg av kurser
+db.run("DELETE FROM sqlite_sequence WHERE name='courses'", function(err) {
+    if (err) {
+        console.error("Error resetting auto-increment sequence:", err.message);
+    } else {
+        console.log("Auto-increment sequence reset successfully for table 'courses'");
+    }
 });
