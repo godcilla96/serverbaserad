@@ -16,7 +16,7 @@
     </nav>
     <main>
     <h1>Visa kurser</h1>
-    <p>En text som visar hur brödtexten ser ut...</p>
+    <p>Tillagda kurser:</p>
     <table>
         <thead>
             <tr>
@@ -32,18 +32,18 @@
                     <td><%= course.coursename %></td>
                     <td><%= course.coursecode %></td>
                     <td><%= course.progression %></td>
-                    <td><%= course.syllabus %></td>
+                    <td><a href = "<%= course.syllabus %>">Kursplan</a></td>
                     <td>
                         <form method="post" action="/delete-course">
                             <input type="hidden" name="courseId" value="<%= course.id %>">
                             <button type="submit" class="delete-button">Ta bort</button>
+                        </form>
                     </td>
                 </tr>
             <% }); %>
         </tbody>
     </table>
     </main>
-
         <footer>
             Skapad av Cecilia Lindström celi2302@student.miun.se
         </footer>

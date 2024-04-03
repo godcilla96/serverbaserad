@@ -70,15 +70,20 @@ app.post("/add-course", (req, res) => {
 
 //ta bort lagrad data
 app.post("/delete-course", (req, res) => {
-    const courseId = req.body.courseId;
+    let courseId = req.body.courseId; 
+    
+    if (Array.isArray(courseId)) {
+        courseId = courseId[0];
+    }
     console.log("Received courseId for deletion:", courseId);
+    
     db.run("DELETE FROM courses WHERE id = ?", [courseId], function(err) {
         if (err) {
             console.error("Error deleting course:", err.message);
             res.send("Det uppstod ett fel när kursen skulle tas bort.");
         } else {
             console.log("Course deleted successfully. Course ID:", courseId);
-            // laddar om startsidan efter borttagning
+            //återsänder användaren till index-sidan
             res.redirect("/");
         }
     });
