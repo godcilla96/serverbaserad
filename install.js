@@ -20,3 +20,4 @@ db.serialize(() => {
 });
 
 db.close();
+

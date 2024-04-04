@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moment 1 - serverbaserad webbutveckling</title>
-    <link rel = "stylesheet" href = "/css/style.css">
+    <link rel = "stylesheet" href = "/style.css">
 </head>
 <body>
     <nav>
@@ -17,45 +17,29 @@
     <main>
     <h1>Lägg till kurs</h1>
     <p>Här kan du lägga till nya kurser</p>
-    <form action="/add-course" method="POST">
-        <label for="coursenames">Kursnamn:</label>
-        <input list="coursename" id="courses" name="coursename" required>
+    <form action="/add-course" method="POST" id="courseForm">
+        <label for="courseNameInput">Kursnamn:</label>
+        <input list="coursename" id="courseNameInput" name="coursename" required>
         <datalist id="coursename">
             <% courses.forEach(course => { %>
                 <option value="<%= course.KURSNAMN %>">
             <% }); %>
         </datalist>
         
-        <label for="coursecodes">Kurskod:</label>
-        <input list="coursecode" id="codes" name="coursecode" required>
-        <datalist id="coursecode">
-            <% courses.forEach(course => { %>
-                <option value="<%= course.KURSKOD %>">
-            <% }); %>
-        </datalist>
+        <label for="courseCodeInput">Kurskod:</label>
+        <input id="courseCodeInput" name="coursecode" required>
         
-        <label for="progressions">Progression:</label>
-        <input list="progression" id="progressions" name="progression" required>
-        <datalist id="progression">
-            <% courses.forEach(course => { %>
-                <option value="<%= course.PROGRESSION %>">
-            <% }); %>
-        </datalist>
+        <label for="progressionInput">Progression:</label>
+        <input id="progressionInput" name="progression" required>
         
-        <label for="syllabuses">Kursplan:</label>
-        <input list="syllabus" id="syllabuses" name="syllabus" required>
-        <datalist id="syllabus">
-            <% courses.forEach(course => { %>
-                <option value="<%= course.KURSPLAN %>">
-            <% }); %>
-        </datalist>
-        
+        <label for="syllabusInput">Kursplan:</label>
+        <input id="syllabusInput" name="syllabus" required>
         <input type="submit" value="Lägg till kurs" class="submit">
     </form>
     </main>
     <footer>
         Skapad av Cecilia Lindström celi2302@student.miun.se
     </footer>
-
+    <script src = "/script.js"></script>
 </body>
 </html>
