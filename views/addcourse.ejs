@@ -26,7 +26,7 @@
     <% } %>
     <form action="/add-course" method="POST" id="courseForm">
         <label for="courseNameInput">Kursnamn:</label>
-        <input list="coursename" id="courseNameInput" name="coursename" required>
+        <input list="coursename" id="courseNameInput" name="coursename">
         <datalist id="coursename">
             <% courses.forEach(course => { %>
                 <option value="<%= course.KURSNAMN %>">
@@ -34,13 +34,13 @@
         </datalist>
         
         <label for="courseCodeInput">Kurskod:</label>
-        <input id="courseCodeInput" name="coursecode" required>
+        <input id="courseCodeInput" name="coursecode">
         
         <label for="progressionInput">Progression:</label>
-        <input id="progressionInput" name="progression" required>
+        <input id="progressionInput" name="progression">
         
         <label for="syllabusInput">Kursplan:</label>
-        <input id="syllabusInput" name="syllabus" required>
+        <input id="syllabusInput" name="syllabus">
         <input type="submit" value="Lägg till kurs" class="submit">
     </form>
     </main>

@@ -192,10 +192,11 @@ app.post("/add-course", (req, res) => {
       errors.push("Ange länk till kursplan");
     }
   
-    // Om det finns felmeddelanden, rendera vyn med meddelandena
+    // Felmeddelanden
     if (errors.length > 0) {
-      return res.render("addcourse", { errors: errors, courses: courses });
-    }
+        return res.render("addcourse", { errors: errors, coursename: coursename, coursecode: coursecode, progression: progression, syllabus: syllabus, courses: courses });
+      }
+    
   db.run(`
     INSERT INTO courses (coursename, coursecode, progression, syllabus)
     VALUES (?, ?, ?, ?)

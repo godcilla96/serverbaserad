@@ -149,6 +149,6 @@ tr:hover {
 
 .error {
     width: 100%;
-    color:red;
-    font-size: 1.5em;
+    color:rgb(255, 0, 0);
+    font-size: 1.2em;
 }
