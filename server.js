@@ -154,9 +154,8 @@ app.get("/about", (req, res) => {
 });
 
 app.get("/addcourse", (req, res) => {
-    res.render("addcourse", { courses: courses });
+    res.render("addcourse", { errors: [], courses: courses });
 });
-
 // starta applikation
 app.listen(port, () => { 
     console.log("Server started on port: " + port);
@@ -174,8 +173,29 @@ app.use(express.urlencoded({ extended: true }));
 const db = new sqlite3.Database("./db/cv.db");
 
 app.post("/add-course", (req, res) => {
-  const { coursename, coursecode, progression, syllabus } = req.body;
-
+    const { coursename, coursecode, progression, syllabus } = req.body;
+  
+    // Skapa en array för att lagra felmeddelanden
+    const errors = [];
+  
+    // Kontrollera om något av fälten är tomma
+    if (!coursename) {
+      errors.push("Ange kursnamn");
+    }
+    if (!coursecode) {
+      errors.push("Ange kurskod");
+    }
+    if (!progression) {
+      errors.push("Ange progression");
+    }
+    if (!syllabus) {
+      errors.push("Ange länk till kursplan");
+    }
+  
+    // Om det finns felmeddelanden, rendera vyn med meddelandena
+    if (errors.length > 0) {
+      return res.render("addcourse", { errors: errors, courses: courses });
+    }
   db.run(`
     INSERT INTO courses (coursename, coursecode, progression, syllabus)
     VALUES (?, ?, ?, ?)
@@ -187,7 +207,6 @@ app.post("/add-course", (req, res) => {
       console.log("Course added successfully. Course ID:", this.lastID);
       res.redirect("/");
     }
-
   });
 });
 
